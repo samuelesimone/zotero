@@ -1,7 +1,7 @@
 /* global Zotero, Services, Cu, ChromeUtils */
 var LocalAI;
 
-const FILES = ['config', 'ollama', 'vectors', 'sdtPassages', 'chunker', 'main'];
+const FILES = ['config', 'ollama', 'vectors', 'sdtPassages', 'chunker', 'store', 'main'];
 
 function install() {}
 
