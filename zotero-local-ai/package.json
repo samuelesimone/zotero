@@ -1,0 +1,15 @@
+{
+	"name": "zotero-local-ai",
+	"version": "0.1.0",
+	"private": true,
+	"description": "Local AI for Zotero: local OCR, knowledge search and chat with Ollama",
+	"scripts": {
+		"test": "mocha",
+		"build": "rm -rf build && mkdir -p build && zip -r build/zotero-local-ai.xpi manifest.json bootstrap.js prefs.js src content locale -x '*.DS_Store'"
+	},
+	"devDependencies": {
+		"chai": "^4.5.0",
+		"mocha": "^10.7.0",
+		"sql.js": "^1.11.0"
+	}
+}

@@ -1,0 +1,14 @@
+{
+	"manifest_version": 2,
+	"name": "Local AI for Zotero",
+	"version": "0.1.0",
+	"description": "Chat with your papers using local models via Ollama",
+	"applications": {
+		"zotero": {
+			"id": "local-ai@samuelesimone.github.io",
+			"update_url": "https://raw.githubusercontent.com/samuelesimone/zotero/feature/local-ai/zotero-local-ai/updates.json",
+			"strict_min_version": "7.0",
+			"strict_max_version": "11.*"
+		}
+	}
+}
