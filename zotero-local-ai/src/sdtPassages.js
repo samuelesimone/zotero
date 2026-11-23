@@ -42,9 +42,10 @@ var SDTPassages = (() => {
 		return `${pad(pageIndex, 5)}|${pad(0, 6)}|${pad(top, 5)}`;
 	}
 
+	// SDT's detected page labels are unreliable on some PDFs (e.g. ["2", "-", "3"]
+	// for an arXiv paper), so use the physical page number shown in the reader toolbar
 	function pageLabel(pages, pageIndex) {
-		let page = pages[pageIndex];
-		return (page && page.label) || String(pageIndex + 1);
+		return String(pageIndex + 1);
 	}
 
 	function structureToPassages(structure) {

@@ -46,7 +46,7 @@ var ChatController = (() => {
 			let { ollama, store, getPassages, citations, config } = this.deps;
 			try {
 				if (Router.isCitationQuestion(question)) {
-					let result = { kind: 'citation', ...citations.formatBibliography(this.item) };
+					let result = { kind: 'citation', ...(await citations.formatBibliography(this.item)) };
 					if (Router.wantsBibTeX(question)) {
 						result.bibtex = await citations.exportBibTeX(this.item);
 					}

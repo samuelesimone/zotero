@@ -29,7 +29,7 @@ describe('SDTPassages.structureToPassages', function () {
 			section: '1 Introduction',
 			pageRects: [[0, 72, 600, 540, 650]],
 			pageIndex: 0,
-			pageLabel: 'i',
+			pageLabel: '1',
 			sortIndex: '00000|000000|00142',
 		});
 	});
@@ -39,7 +39,7 @@ describe('SDTPassages.structureToPassages', function () {
 		assert.deepEqual(texts, ['We study local models.', 'First result.\nSecond result.']);
 	});
 
-	it('falls back to a 1-based page label', function () {
+	it('uses the 1-based physical page number as label', function () {
 		let passages = SDTPassages.structureToPassages(structure);
 		assert.equal(passages[1].section, '2 Results');
 		assert.equal(passages[1].pageLabel, '2');
