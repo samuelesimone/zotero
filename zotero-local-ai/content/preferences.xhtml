@@ -1,0 +1,16 @@
+<vbox xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	class="main-section">
+	<groupbox>
+		<label><html:h2>Local AI</html:h2></label>
+		<html:p>Models run locally through Ollama. Pull them first, e.g. <html:code>ollama pull gemma4:12b</html:code>.</html:p>
+		<html:label for="local-ai-ollama-url">Ollama URL</html:label>
+		<html:input id="local-ai-ollama-url" type="text" preference="extensions.zotero-local-ai.ollamaURL"/>
+		<html:label for="local-ai-chat-model">Chat model</html:label>
+		<html:input id="local-ai-chat-model" type="text" preference="extensions.zotero-local-ai.chatModel"/>
+		<html:label for="local-ai-embed-model">Embedding model (changing it re-indexes papers when you next ask)</html:label>
+		<html:input id="local-ai-embed-model" type="text" preference="extensions.zotero-local-ai.embedModel"/>
+		<html:label for="local-ai-ocr-model">OCR model (used in a later version)</html:label>
+		<html:input id="local-ai-ocr-model" type="text" preference="extensions.zotero-local-ai.ocrModel"/>
+	</groupbox>
+</vbox>

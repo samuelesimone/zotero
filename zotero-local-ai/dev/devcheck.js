@@ -75,7 +75,32 @@ var DevCheck = (() => {
 				if (result.kind === 'answer' && result.cited.length) {
 					let source = result.sources[result.cited[0] - 1];
 					await Highlight.showSource(attachment.id, source);
-					log('showSource', { page: source.pageLabel, rects: Positions.chunkToPosition(source).rects, text: source.text.slice(0, 160) });
+					let position = Positions.chunkToPosition(source);
+					log('showSource', { targetPage: position.pageIndex + 1, rects: position.rects, text: source.text.slice(0, 160) });
+					await Zotero.Promise.delay(1500);
+					let win = Zotero.getMainWindow();
+					let reader = Zotero.Reader.getByTabID(win.Zotero_Tabs.selectedID);
+					let viewer = null;
+					try {
+						viewer = reader._internalReader._primaryView._iframeWindow.wrappedJSObject.PDFViewerApplication.pdfViewer;
+					}
+					catch (e) {}
+					log('reader', {
+						selectedTabIsReader: !!reader,
+						readerItemID: reader && reader.itemID,
+						currentPage: viewer ? viewer.currentPageNumber : 'unknown',
+					});
+
+					let annotation = await Highlight.saveAsAnnotation(attachment.id, source, ask);
+					log('annotation', {
+						saved: !!annotation.id,
+						type: annotation.annotationType,
+						tags: annotation.getTags().map(t => t.tag),
+						comment: annotation.annotationComment,
+						pageLabel: annotation.annotationPageLabel,
+						position: JSON.parse(annotation.annotationPosition).pageIndex,
+					});
+					await annotation.eraseTx();
 				}
 			}
 			log('done', 'ok');

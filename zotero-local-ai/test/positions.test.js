@@ -17,6 +17,23 @@ describe('Positions', function () {
 		});
 	});
 
+	it('targets the page that holds most of a chunk spanning pages', function () {
+		let spanning = {
+			...chunk,
+			pageRects: [[6, 107, 69, 332, 78], [7, 107, 400, 505, 700], [7, 107, 300, 505, 390]],
+			pageIndex: 6,
+			pageLabel: '7',
+			sortIndex: '00006|000000|00714',
+		};
+		assert.deepEqual(Positions.chunkToPosition(spanning), {
+			pageIndex: 7,
+			rects: [[107, 400, 505, 700], [107, 300, 505, 390]],
+		});
+		let json = Positions.annotationJSON({ chunk: spanning, key: 'K', question: 'q' });
+		assert.equal(json.pageLabel, '8');
+		assert.equal(json.sortIndex, '00007|000000|00000');
+	});
+
 	it('builds highlight annotation JSON', function () {
 		let json = Positions.annotationJSON({ chunk, key: 'ABCD2345', question: 'What is the accuracy?' });
 		assert.deepEqual(json, {
